@@ -1,0 +1,301 @@
+set hlsearch
+set ignorecase
+set smartcase
+set scrolloff=3 " 3 lines above/below cursor when scrolling
+
+" Emulated Plugins
+set surround
+
+" See vim exchange
+set exchange
+
+" adds argument to cd - actions
+set argtextobj
+
+" highlight yanked text
+set highlightedyank
+" Copy to system clipboard as well
+set clipboard+=unnamed
+
+" Use Idea to join lines smartly
+set ideajoin
+
+" Multiple cursors support
+set multiple-cursors
+
+" These settings are from - https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+
+" let mapleader = ","
+let mapleader = " "
+" let maplocalleader = ","
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+nmap zJ jddk
+nmap zK kdd
+
+" Search
+nmap <leader>/ :action Find<cr>
+nmap <leader>\ :action FindInPath<cr>
+nmap <leader>fe :action SearchEverywhere<CR>
+nmap <leader>fip :action FindInPath<CR>
+nmap <leader>fu :action FindUsages<CR>
+"nmap <leader>fh :action
+nmap <leader>fs :action GotoSymbol<cr>
+nmap <leader>fa :action GotoAction<CR>
+nmap <leader>fc :action GotoClass<CR>
+nmap <leader>fpi :action ParameterInfo<CR>
+
+"Popups
+nmap <leader>ofs :action FileStructurePopup<CR>
+nmap <leader>oia :action ShowIntentionActions<CR>
+nmap <leader>os :action Switcher<cr>
+nmap <leader>oe :action RecentChangedFiles<cr>
+nmap <leader>or :action RecentChangedFiles<cr>
+nmap <leader>osfp :action ShowFilePath<CR>
+nmap <leader>odp :action ShowUmlDiagramPopup<CR>
+nmap <leader>oep :action EditorPopupMenu<CR>
+
+" Actions
+nmap <leader>api :action ParameterInfo<CR>
+nmap <leader>ach :action CallHierarchy<CR>
+nmap <leader>ath :action TypeHierarchy<CR>
+nmap <leader>au  :action FindUsages<CR>
+nmap <leader>amh :action MethodHierarchy<CR>
+nmap <leader>asb :action SliceBackward<CR>
+nmap <leader>asf :action SliceForward<CR>
+nmap <leader>aqd :action QuickJavaDoc<CR>
+nmap <leader>apw :action SelectInProjectView<CR>
+nmap <leader>ah :action HideAllWindows<CR>
+
+nmap <leader>areload <ESC>:source ~/.ideavimrc<CR>
+
+
+" Projects
+nnoremap <leader>pn :action NextProjectWindow<CR>
+nnoremap <leader>pp :action PreviousProjectWindow<CR>
+nnoremap <leader>p; :action OpenProjectWindows<CR>
+
+" tools
+nmap <leader>tt :action ActivateTerminalToolWindow<CR>
+nmap <leader>td :action ActivateDebugToolWindow<CR>
+nmap <leader>tf :action ActivateFavoritesToolWindow<CR>
+nmap <Leader>tp :action ActivateProjectToolWindow<CR>
+
+nmap <Leader>tr :action ActivateRunToolWindow<CR>
+nmap <Leader>te :action ActivateProblemsViewToolWindow<CR>
+nmap <Leader>ts :action ActivateStructureToolWindow<CR>
+nmap <Leader>tf :action ActivateFavoritesToolWindow<CR>
+nmap <Leader>to :action ActivateTODOToolWindow<CR>
+
+" Debug
+nmap <leader>dr :action Resume<CR>
+nmap <leader>dso :action StepOver<CR>
+nmap <leader>dsi <ESC>:action SmartStepInto<CR>
+nmap <leader>dee <ESC>:action EvaluateExpression<CR>
+nmap <leader>dvb <ESC>:action ViewBreakpoints<CR>
+nmap <leader>dbb <ESC>:action ToggleLineBreakpoint<CR>
+nmap <leader>dbm <ESC>:action XDebugger.MuteBreakpoints<CR>
+" git flow
+" noremap \[ <ESC>:action Gitflow.OpenGitflowPopup<CR>
+" Vcs
+" noremap \] <ESC>:action Vcs.QuickListPopupAction<CR>
+
+" Navigation
+nmap H :action Back<CR>
+nmap L :action Forward<CR>
+nmap gd :action GotoDeclaration<CR>
+nmap gs :action GotoSuperMethod<CR>
+nmap gi :action GotoImplementation<CR>
+map gh :action Back<cr>
+nmap gl :action Forward<cr>
+nmap gf :action GotoFile<cr>
+nmap gi :action GotoImplementation<cr>
+nmap gL :action RecentLocations<cr>
+nmap ge :action RecentFiles<cr>
+nmap <leader>gt :action GotoTest<cr>
+nmap gp :action JumpToLastWindow<cr>
+nmap gb :action ShowBookmarks<cr>
+nmap go :action GotoTypeDeclaration<CR>
+nmap gc :action JumpToLastChange<CR>
+nmap g. :action JumpToLastChange<CR>
+nmap g, :action JumpToNextChange<CR>
+
+
+" nmap <leader>M :action ActivateStructureToolWindow<cr>
+" nmap <leader>d :action ShowErrorDescription<cr>
+" nmap <leader>I :action SelectIn<cr>
+nmap <C-,> :action MethodUp<cr>
+nmap <C-.> :action MethodDown<cr>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+
+" Refactorings
+nmap <leader>rr :action RenameElement<CR>
+nmap <leader>r= :action ReformatCode<CR>
+vmap <leader>r= :action ReformatCode<CR>
+nmap <leader>rc :action CommentByLineComment<CR>
+vmap <leader>rc :action CommentByLineComment<CR>
+nmap <leader>rg :action Generate<cr>
+vmap T :action Refactorings.QuickListPopupAction<cr>
+nmap <leader>roi :action OptimizeImports<cr>
+nmap <leader>rm :action RefactoringMenu<CR>
+vmap <leader>rm :action RefactoringMenu<CR>
+nmap <leader>rpi :action ParameterInfo<CR>
+
+" Inspection
+nmap <leader>ric :action InspectCode<cr>
+
+
+
+" WINDOW Navigation
+
+
+
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+nmap <leader>wh <c-w>h
+nmap <leader>wl <c-w>l
+nmap <leader>wk <c-w>k
+nmap <leader>wj <c-w>j
+" Closing tabs
+nmap <leader>wc :action CloseContent<cr>
+nmap <leader>wC :action ReopenClosedTab<cr>
+" To navigate between split panes
+nmap <leader>wn :action NextSplitter<cr>
+nmap <leader>wp :action PrevSplitter<cr>
+" nmap <leader>j :action PrevSplitter<cr>
+" Splits manipulation
+nmap <leader>ws :action SplitHorizontally<cr>
+nmap <leader>wv :action SplitVertically<cr>
+nmap <leader>wm :action Unsplit<cr>
+nmap <leader>wM :action UnsplitAll<cr>
+nmap <leader><leader> :action VimFilePrevious<cr>
+nmap <leader>ww :action JumpToLastWindow<cr>
+nmap <leader>wom :action MoveEditorToOppositeTabGroup<cr>
+nmap <leader>woo :action OpenEditorInOppositeTabGroup<cr>
+
+" easy window navigation
+nmap <c-l> <c-w>l
+nmap <c-j> <c-w>j
+nmap <c-h> <c-w>h
+nmap <c-k> <c-w>k
+nmap <a-h> gT
+nmap <a-l> gt
+nmap <a-o> :action MoveEditorToOppositeTabGroup<cr>
+nmap <c-a-o> :action OpenEditorInOppositeTabGroup<cr>
+nmap <c-n> :action NextSplitter<cr>
+nmap <c-p> :action PrevSplitter<cr>
+
+"nmap <leader>wgr :action MoveTabRight<CR>
+
+
+" Errors
+nmap <leader>x :action GotoNextError<cr>
+nmap <leader>X :action GotoPreviousError<cr>
+
+" built in search looks better
+nnoremap / :action Find<cr>
+
+" VCS operations
+" nmap <leader>yy :action Vcs.Show.Local.Changes<cr>                          
+" nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
+" nmap <leader>ya :action Annotate<cr>
+" nmap <leader>yl :action Vcs.Show.Log<cr>
+" nmap <leader>yd :action Compare.LastVersion<cr>
+" nmap <leader>yr :action Git.ResolveConflicts<cr>
+
+" IdeaVim uses 'a' for alt instead of Vim's 'm'
+" nmap <a-j> 15gj
+" nmap <a-k> 15gk
+
+" Won't work in visual mode (with vmap) for some reason.
+" Use default map of <c-/> for that.
+" nmap gcc :action CommentByLineComment<cr>
+
+" unimpaired mappings - from https://github.com/saaguero/ideavimrc/blob/master/.ideavimrc
+" nnoremap [<space> O<esc>j
+" nnoremap ]<space> o<esc>k
+" nnoremap [q :action PreviousOccurence<cr>
+" nnoremap ]q :action NextOccurence<cr>
+" nnoremap [m :action MethodUp<cr>
+" nnoremap ]m :action MethodDown<cr>
+" nnoremap [c :action VcsShowPrevChangeMarker<cr>
+" nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+" Errors
+nmap <leader>ep :action GotoPreviousError<CR>
+nmap <leader>en :action GotoNextError<CR>
+
+" Building, Running and Debugging
+nmap <leader>sc :action CompileDirty<cr>
+nmap <leader>sr :action Run<cr>
+nmap <leader>sR :action RunAnything<cr>
+nmap <leader>sdd :action Debug<cr>
+nmap <leader>sc :action RunClass<cr>
+nmap <leader>sdc :action DebugClass<cr>
+nmap <leader>stt :action RerunTests<cr>
+nmap <leader>stf :action RerunFailedTests<cr>
+
+" Tabs
+" nnoremap [b :action PreviousTab<cr>
+" nnoremap ]b :action NextTab<cr>
+
+" Moving lines
+" nmap [e :action MoveLineUp<cr>
+" nmap ]e :action MoveLineDown<cr>
+" Moving statements
+" nmap [s :action MoveStatementUp<cr>
+" nmap ]s :action MoveStatementDown<cr>
+
+
+" Clojure specific mappings for Cursive
+" nmap \c :action :cursive.repl.actions/clear-repl<cr>
+" nmap \l :action :cursive.repl.actions/load-file<cr>
+" nmap \o :action :cursive.repl.actions/jump-to-output<cr>
+" nmap \r :action :cursive.repl.actions/jump-to-repl<cr>
+" nmap \t :action :cursive.testing.actions/run-ns-tests<cr>
+" nmap \T :action :cursive.testing.actions/rerun-last-test<cr>
+" nmap \C :action :cursive.testing.actions/remove-test-markers<cr>
+
+" Python specific mappings
+" Format code with Black fomatter
+" nmap \p :action Tool_External Tools_Black<cr>
+
+" :cursive.repl.actions/clojure-repl-commands-group
+" :cursive.repl.actions/clojure-repl-group
+" :cursive.repl.actions/interrupt
+" :cursive.repl.actions/jump-to-output
+" :cursive.repl.actions/jump-to-repl                 <C-\>
+" :cursive.repl.actions/load-file                    <A-S-L>
+" :cursive.repl.actions/macroexpansion               <C-S-\>
+" :cursive.repl.actions/next-history-item            <C-Down>
+" :cursive.repl.actions/prev-history-item            <C-Up>
+" :cursive.repl.actions/print-exception
+" :cursive.repl.actions/run-last-sexp
+" :cursive.repl.actions/run-top-sexp                 <A-S-P>
+" :cursive.repl.actions/search-history               <A-C-E>
+" :cursive.repl.actions/switch-namespace             <A-S-R>
+" :cursive.repl.actions/sync-files                   <A-S-M>
+" :cursive.repl.commands/add-new
+" :cursive.repl.commands/edit
+" :cursive.testing.actions/remove-test-markers
+" :cursive.testing.actions/rerun-last-test
+" :cursive.testing.actions/run-ns-tests
+" :cursive.testing.actions/run-single-test
+
+" External GVim
+" nmap <leader>v :action Tool_External Tools_gvim<cr>
+
+" External Emacs
+" nmap <leader>E :action Tool_External Tools_emacsclient<cr>
+
+" External Sublime Text
+" nmap <leader>S :action Tool_External Tools_sublime_text<cr>
+
+" Use Q for formatting the current paragraph (or visual selection)
+" vmap Q gq
+" nmap Q gqap
