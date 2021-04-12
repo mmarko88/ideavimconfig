@@ -5,23 +5,19 @@ set scrolloff=3 " 3 lines above/below cursor when scrolling
 
 " Emulated Plugins
 set surround
-
 " See vim exchange
 set exchange
-
 " adds argument to cd - actions
 set argtextobj
-
 " highlight yanked text
 set highlightedyank
 " Copy to system clipboard as well
 set clipboard+=unnamed
-
 " Use Idea to join lines smartly
 set ideajoin
 
 " Multiple cursors support
-set multiple-cursors
+"set multiple-cursors
 
 " These settings are from - https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
 
@@ -29,134 +25,60 @@ set multiple-cursors
 let mapleader = " "
 " let maplocalleader = ","
 
+" edit text
 " These create newlines like o and O but stay in normal mode
-nmap zj o<Esc>k
-nmap zk O<Esc>j
-nmap zJ jddk
-nmap zK kdd
+nmap zj mbo<Esc>`b
+nmap zk mbO<Esc>`b
+nmap zJ mbjdd`b
+nmap zK mbkdd`b
+nmap dl :action EditorDuplicate<cr>
+nmap Y v$y
+
+" Multiple cursors
+nmap <c-[> :action EditorCloneCaretAbove<CR>
+nmap <c-]> :action EditorCloneCaretBelow<CR>
 
 " Search
 nmap <leader>/ :action Find<cr>
 nmap <leader>\ :action FindInPath<cr>
 nmap <leader>fe :action SearchEverywhere<CR>
 nmap <leader>fip :action FindInPath<CR>
+" find in files
+nmap <leader>fif :action FindInPath<CR>
 nmap <leader>fu :action FindUsages<CR>
-nmap <leader>fs :action GotoSymbol<cr>
-nmap <leader>fh :action CallHierarchy<cr>
 nmap <leader>fa :action GotoAction<CR>
+nmap , :action GotoAction<CR>
 nmap <leader>fc :action GotoClass<CR>
 nmap <leader>ff :action GotoFile<cr>
-nmap <leader>fr :action GotoRelated<cr>
-nmap <leader>fcg :action GoToCodeGroup<cr>
-nmap <leader>furl :action GotoUrlAction<cr>
 nmap <leader>url :action GotoUrlAction<cr>
-
-"Popups
-nmap <leader>fsp :action FileStructurePopup<CR>
-nmap <leader>msp :action FileStructurePopup<CR>
-nmap <leader>afs :action FileStructurePopup<CR>
-nmap <leader>sia :action ShowIntentionActions<CR>
-"nmap <leader>oe :action RecentChangedFiles<cr>
-nmap <leader>rcf :action RecentChangedFiles<cr>
-nmap <leader>sfp :action ShowFilePath<CR>
-nmap <leader>uml :action ShowUmlDiagramPopup<CR>
-nmap <leader>epm :action EditorPopupMenu<CR>
-nmap <leader>haw :action HideAllWindows<CR>
-nmap <leader>ha :action HideAllWindows<CR>
-nmap <leader>hw :action HideAllWindows<CR>
-nmap <leader>wh :action HideAllWindows<CR>
-nmap <leader>hpw :action HideAllWindows<CR>
-nmap <leader>hapw :action HideAllWindows<CR>
-
-nmap <leader>goto :action GoToCodeGroup<cr>
-nmap <leader>gs :action GotoSymbol<cr>
-nmap <leader>ga :action GotoAction<CR>
-nmap <leader>gc :action GotoClass<CR>
-nmap <leader>gf :action GotoFile<cr>
-nmap <leader>gr :action GotoRelated<cr>
-nmap <leader>gm :action GoToMenu<CR>
-nmap <leader>gm :action GoToMenu<CR>
-nmap gm :action GoToMenu<CR>
-emap gm :action GoToMenu<CR>
-nnmap gurl :action GotoUrlAction<CR>
-
-" Actions
-nmap <leader>pi :action ParameterInfo<CR>
-nmap <leader>ch :action CallHierarchy<CR>
-nmap <leader>th :action TypeHierarchy<CR>
-nmap <leader>mh :action MethodHierarchy<CR>
-nmap <leader>sb :action SliceBackward<CR>
-nmap <leader>sf :action SliceForward<CR>
-nmap <leader>qd :action QuickJavaDoc<CR>
-nmap <leader>pw :action SelectInProjectView<CR>
-nmap <leader>h :action HideAllWindows<CR>
-nmap <leader>ann :action Annotate<CR>
-nmap <leader>annotate :action Annotate<CR>
-nmap <leader>blame :action Annotate<CR>
-nmap <leader>reload <ESC>:source ~/.ideavimrc<CR>
-
-
-" Projects
-nmap <leader>np :action NextProjectWindow<CR>
-nmap <leader>pp :action PreviousProjectWindow<CR>
-nmap <leader>pw :action OpenProjectWindows<CR>
-
-" tools
-nmap <leader>atw :action ActivateTerminalToolWindow<CR>
-nmap <leader>attw :action ActivateTerminalToolWindow<CR>
-nmap <leader>cmd :action ActivateTerminalToolWindow<CR>
-nmap <leader>bash :action ActivateTerminalToolWindow<CR>
-nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
-nmap <leader>fav :action ActivateFavoritesToolWindow<CR>
-nmap <leader>faw :action ActivateFavoritesToolWindow<CR>
-nmap <Leader>apw :action ActivateProjectToolWindow<CR>
-nmap <leader>adw :action ActivateDebugToolWindow<CR>
-nmap <leader>dbgw :action ActivateDebugToolWindow<CR>
-nmap <leader>debugw :action ActivateDebugToolWindow<CR>
-nmap <Leader>arw :action ActivateRunToolWindow<CR>
-nmap <Leader>runw :action ActivateRunToolWindow<CR>
-nmap <Leader>apw :action ActivateProblemsViewToolWindow<CR>
-nmap <Leader>problems :action ActivateProblemsViewToolWindow<CR>
-nmap <Leader>asw :action ActivateStructureToolWindow<CR>
-map <Leader>structure :action ActivateStructureToolWindow<CR>
-nmap <Leader>todo :action ActivateTODOToolWindow<CR>
-
-
-" git flow
-" noremap \[ <ESC>:action Gitflow.OpenGitflowPopup<CR>
-" Vcs
-" noremap \] <ESC>:action Vcs.QuickListPopupAction<CR>
-
 " Navigation
 nmap H :action Back<CR>
 nmap L :action Forward<CR>
 
 nmap gd :action GotoDeclaration<CR>
+nmap gtd :action GotoTypeDeclaration<CR>
 nmap gs :action GotoSuperMethod<CR>
 nmap gi :action GotoImplementation<CR>
-map gh :action Back<cr>
-nmap gl :action Forward<cr>
 nmap gf :action GotoFile<cr>
+nmap gcf :action RecentChangedFiles<cr>
+nmap gr :action RecentChangedFiles<cr>
 nmap grl :action RecentLocations<cr>
-nmap gE :action RecentLocations<cr>
 nmap ge :action RecentFiles<cr>
-nmap <leader>gt :action GotoTest<cr>
+nmap gt :action GotoTest<cr>
 nmap gp :action JumpToLastWindow<cr>
 nmap gb :action ShowBookmarks<cr>
-nmap gdef :action GotoTypeDeclaration<CR>
-nmap gc :action JumpToLastChange<CR>
 nmap g, :action JumpToLastChange<CR>
 nmap g. :action JumpToNextChange<CR>
-nmap gr :action GotoRelated<cr>
+nmap grel :action GotoRelated<cr>
+
+
+" Git
 nmap <leader>gg :action Git.MainMenu<cr>
 
 " nmap <leader>M :action ActivateStructureToolWindow<cr>
 
 nmap <leader>I :action SelectIn<cr>
-nmap <leader>select :action SelectIn<cr>
 nmap <leader>sel :action SelectIn<cr>
-" Select window
-nmap <leader>sw :action SelectIn<cr>
 nmap <C-,> :action MethodUp<cr>
 nmap <C-.> :action MethodDown<cr>
 
@@ -164,25 +86,73 @@ nmap <C-.> :action MethodDown<cr>
 nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
 
+"Popups
+nmap <leader>fsp :action FileStructurePopup<CR>
+nmap <leader>msp :action FileStructurePopup<CR>
+nmap <leader>afs :action FileStructurePopup<CR>
+nmap <leader>sfp :action ShowFilePath<CR>
+nmap <leader>fp :action ShowFilePath<CR>
+nmap <leader>exe :action ShowFilePath<CR>
+nmap <leader>uml :action ShowUmlDiagramPopup<CR>
+nmap <leader>epm :action EditorPopupMenu<CR>
+"Context menu
+nmap <leader>cm :action EditorPopupMenu<CR>
+nmap <leader>scm :action EditorPopupMenu<CR>
+nmap <leader>ha :action HideAllWindows<CR>
+nmap <leader>hw :action HideAllWindows<CR>
+nmap <leader>wh :action HideAllWindows<CR>
+
+nmap <leader>goto :action GoToCodeGroup<cr>
+nmap <leader>gs :action GotoSymbol<cr>
+nmap <leader>ga :action GotoAction<CR>
+nmap <leader>gc :action GotoClass<CR>
+nmap <leader>gm :action GoToMenu<CR>
+nmap gm :action GoToMenu<CR>
+vmap gm :action GoToMenu<CR>
+nmap gurl :action GotoUrlAction<CR>
+
+" Actions
+nmap <c-p> :action ParameterInfo<CR>
+vmap <c-p> :action ParameterInfo<CR>
+nmap <leader>pi :action ParameterInfo<CR>
+nmap <leader>ch :action CallHierarchy<CR>
+nmap <leader>th :action TypeHierarchy<CR>
+nmap <leader>mh :action MethodHierarchy<CR>
+nmap <leader>sb :action SliceBackward<CR>
+nmap <leader>sf :action SliceForward<CR>
+nmap <leader>qd :action QuickJavaDoc<CR>
+nmap <leader>spw :action SelectInProjectView<CR>
+nmap <leader>S :action SelectInProjectView<CR>
+nmap <leader>h :action HideAllWindows<CR>
+nmap <leader>ann :action Annotate<CR>
+nmap <leader>reload <ESC>:source ~/.ideavimrc<CR>
+
+" Projects
+nmap <leader>np :action NextProjectWindow<CR>
+nmap <leader>pp :action PreviousProjectWindow<CR>
+nmap <leader>pw :action OpenProjectWindows<CR>
+
+" tools
+"nmap <leader>annotate :action Annotate<CR>
+nmap <leader>atw :action ActivateTerminalToolWindow<CR>
+nmap <leader>cmd :action ActivateTerminalToolWindow<CR>
+nnoremap <a-0> :action ActivateTerminalToolWindow<CR>
+
 " Refactorings
 nmap <leader>rr :action RenameElement<CR>
 nmap <leader>r= :action ReformatCode<CR>
 vmap <leader>r= :action ReformatCode<CR>
 nmap <leader>cc :action CommentByLineComment<CR>
-nmap <leader>rc :action CommentByLineComment<CR>
 vmap <leader>cc :action CommentByLineComment<CR>
-vmap <leader>rc :action CommentByLineComment<CR>
-nmap <leader>rg :action Generate<cr>
-vmap T :action Refactorings.QuickListPopupAction<cr>
-nmap <leader>roi :action OptimizeImports<cr>
+nmap <leader>cg :action Generate<cr>
+vmap R :action Refactorings.QuickListPopupAction<cr>
+nmap R :action Refactorings.QuickListPopupAction<cr>
 nmap <leader>oi :action OptimizeImports<cr>
 vmap <leader>rf :action RefactoringMenu<CR>
 nmap <leader>rf :action RefactoringMenu<CR>
-nmap <leader>sp :action ParameterInfo<CR>
-nmap <leader>parameter :action ParameterInfo<CR>
 
-" Multiple cursors
-
+nmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
+vmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 " Inspection
 nmap <leader>ric :action InspectCode<cr>
 
@@ -205,46 +175,110 @@ nmap <leader>sh :action SplitHorizontally<cr>
 nmap <leader>sv :action SplitVertically<cr>
 nmap <leader>hs :action SplitHorizontally<cr>
 nmap <leader>vs :action SplitVertically<cr>
-" Maximize current window
 nmap <leader>mm :action Unsplit<cr>
-nmap <leader>max :action Unsplit<cr>
+nmap <leader>max :action UnsplitAll<cr>
 nmap <leader>us :action Unsplit<cr>
 nmap <leader>usa :action UnsplitAll<cr>
 nmap <leader>jlw :action JumpToLastWindow<cr>
-nmap <leader>meo :action MoveEditorToOppositeTabGroup<cr>
 nmap <leader>mo :action MoveEditorToOppositeTabGroup<cr>
-nmap <leader>om :action MoveEditorToOppositeTabGroup<cr>
 nmap <leader>oo :action OpenEditorInOppositeTabGroup<cr>
-nmap <leader>oow :action OpenEditorInOppositeTabGroup<cr>
-
-" Add annotate
 
 " easy window navigation
 nmap <c-l> <c-w>l
+nmap <a-l> <c-w>l
 nmap <c-j> <c-w>j
 nmap <c-h> <c-w>h
+nmap <a-h> <c-w>h
 nmap <c-k> <c-w>k
 nmap <a-o> :action MoveEditorToOppositeTabGroup<cr>
-nmap <c-a-o> :action OpenEditorInOppositeTabGroup<cr>
-" replaced with multiple cursors commands
-"nmap <c-n> :action NextSplitter<cr>
-"nmap <c-p> :action PrevSplitter<cr>
+nmap <a-s-O> :action OpenEditorInOppositeTabGroup<cr>
+" scrolling
+nmap <c-s-j> :action EditorScrollUp<cr>
+nmap <c-s-k>  :action EditorScrollDown<cr>
+nmap <c-s-h>  :action EditorScrollLeft<cr>
+nmap <c-s-l>  :action EditorScrollRight<cr>
+nmap <c-s-m>  :action EditorScrollToCenter<cr>
+"EditorScrollTop
+"EditorScrollBottom
 
-" Show Switcher
-"nmap <a-quote>switcher:action Switcher<CR>
+"nmap / :action Find<cr>
 
-
-
-" built in search looks better
-nmap / :action Find<cr>
 nmap <leader>find :action Find<cr>
 nmap <leader>fi :action Find<cr>
 vmap <leader>find :action Find<cr>
 vmap <leader>fi :action Find<cr>
 
+" Building, Running and Debugging
+nmap <leader>cd :action CompileDirty<cr>
+nmap <leader>run :action Run<cr>
+" double ctrl
+"nmap <leader>ra :action RunAnything<cr>
+nmap <leader>rm :action RunMenu<cr>
+nmap <leader>rrt :action RerunTests<cr>
+nmap <leader>rrft :action RerunFailedTests<cr>
+nmap <leader>rc :action RunConfiguration<cr>
+
+"Debug
+nmap <leader>debug :action Debug<cr>
+nmap <leader>stop :action Stop<cr>
+nmap <leader>si :action StepInto<cr>
+nmap <leader>so :action StepOver<cr>
+nmap <leader>con :action Resume<CR>
+nmap <leader>resume :action Resume<CR>
+nmap <leader>continue :action Resume<CR>
+nmap <leader>sout :action StepOut<cr>
+nmap <leader>sO :action StepOut<cr>
+nmap <leader>sbp :action StopBackgroundProcesses<cr>
+nmap <leader>ssi :action SmartStepInto<CR>
+"Evaluate expression
+nmap <leader>eval :action EvaluateExpression<CR>
+nmap <leader>ee :action EvaluateExpression<CR>
+nmap <leader>exec :action EvaluateExpression<CR>
+vmap <leader>eval :action EvaluateExpression<CR>
+vmap <leader>ee :action EvaluateExpression<CR>
+vmap <leader>exec :action EvaluateExpression<CR>
+"Quick evaluate
+nmap <leader>qeval :action QuickEvaluateExpression<CR>
+vmap <leader>qeval :action QuickEvaluateExpression<CR>
+nmap <leader>qe :action QuickEvaluateExpression<CR>
+vmap <leader>qe :action QuickEvaluateExpression<CR>
+" Evaluate parameter
+nmap <leader>ep :action QuickEvaluateExpression<CR>
+vmap <leader>ep :action QuickEvaluateExpression<CR>
+nmap <leader>ti :action ExpressionTypeInfo<CR>
+vmap <leader>ti :action ExpressionTypeInfo<CR>
+
+" Check data flow analysis
+" Igor debugging
+" Check stream debugger
+
+
+" Breakpoints
+nmap <leader>vbb :action ViewBreakpoints<CR>
+" Stop break points
+nmap <leader>bbs :action XDebugger.MuteBreakpoints<CR>
+nmap <leader>bb :action ToggleLineBreakpoint<CR>
+
+nmap <leader>co Console.Open<CR>
+
+"nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
+"nmap <leader>fav :action ActivateFavoritesToolWindow<CR>
+"nmap <leader>faw :action ActivateFavoritesToolWindow<CR>
+"nmap <Leader>apw :action ActivateProjectToolWindow<CR>
+"nmap <leader>adw :action ActivateDebugToolWindow<CR>
+"nmap <leader>dbgw :action ActivateDebugToolWindow<CR>
+"nmap <leader>debugw :action ActivateDebugToolWindow<CR>
+"nmap <Leader>arw :action ActivateRunToolWindow<CR>
+"nmap <Leader>runw :action ActivateRunToolWindow<CR>
+"nmap <Leader>apw :action ActivateProblemsViewToolWindow<CR>
+"nmap <Leader>problems :action ActivateProblemsViewToolWindow<CR>
+"nmap <Leader>asw :action ActivateStructureToolWindow<CR>
+"map <Leader>structure :action ActivateStructureToolWindow<CR>
+"nmap <Leader>todo :action ActivateTODOToolWindow<CR>
+
 
 " VCS operations
-" nmap <leader>yy :action Vcs.Show.Local.Changes<cr>                          
+" nmap <leader>yy :action Vcs.Show.Local.Changes<cr>
 " nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
 " nmap <leader>ya :action Annotate<cr>
 " nmap <leader>yl :action Vcs.Show.Log<cr>
@@ -252,8 +286,6 @@ vmap <leader>fi :action Find<cr>
 " nmap <leader>yr :action Git.ResolveConflicts<cr>
 
 " IdeaVim uses 'a' for alt instead of Vim's 'm'
-" nmap <a-j> 15gj
-" nmap <a-k> 15gk
 
 " Won't work in visual mode (with vmap) for some reason.
 " Use default map of <c-/> for that.
@@ -270,59 +302,17 @@ vmap <leader>fi :action Find<cr>
 " nnoremap ]c :action VcsShowNextChangeMarker<cr>
 
 " Errors
-nmap <leader>gne :action GotoNextError<cr>
-nmap <leader>gpe :action GotoPreviousError<cr>
-nmap <leader>sed :action ShowErrorDescription<cr>
-
-" Building, Running and Debugging
-nmap <leader>cd :action CompileDirty<cr>
-nmap <leader>run :action Run<cr>
-nmap <leader>ra :action RunAnything<cr>
-nmap <leader>rm :action RunMenu<cr>
-nmap <leader>rrt :action RerunTests<cr>
-nmap <leader>rrft :action RerunFailedTests<cr>
-nmap <leader>rc :action RunConfiguration<cr>
-
-"Debug
-nmap <leader>debug :action Debug<cr>
-nmap <leader>stop :action Stop<cr>
-nmap <leader>si :action StepInto<cr>
-nmap <leader>f7 :action StepInto<cr>
-nmap <leader>so :action StepOver<cr>
-nmap <leader>f8 :action StepOver<cr>
-nmap <leader>f9 :action Resume<CR>
-nmap <leader>con :action Resume<CR>
-nmap <leader>resume :action Resume<CR>
-nmap <leader>continue :action Resume<CR>
-nmap <leader>sout :action StepOut<cr>
-nmap <leader>sO :action StepOut<cr>
-nmap <leader>sbp :action StopBackgroundProcesses<cr>
-nmap <leader>dso :action StepOver<CR>
-nmap <leader>ssi :action SmartStepInto<CR>
-"Evaluate expression
-nmap <leader>eval :action EvaluateExpression<CR>
-nmap <leader>exec :action EvaluateExpression<CR>
-vmap <leader>eval :action EvaluateExpression<CR>
-vmap <leader>exec :action EvaluateExpression<CR>
-"Quick evaluate
-nmap <leader>qeval :action QuickEvaluateExpression<CR>
-vmap <leader>qeval :action QuickEvaluateExpression<CR>
-nmap <leader>qe :action QuickEvaluateExpression<CR>
-vmap <leader>qe :action QuickEvaluateExpression<CR>
-
-" Evaluate parameter
-nmap <leader>ep :action QuickEvaluateExpression<CR>
-vmap <leader>ep :action QuickEvaluateExpression<CR>
+"nmap <leader>gne :action GotoNextError<cr>
+"nmap <leader>gpe :action GotoPreviousError<cr>
+"nmap <leader>sed :action ShowErrorDescription<cr>
 
 
-" Breakpoints
-nmap <leader>vbp :action ViewBreakpoints<CR>
-nmap <leader>mbp :action XDebugger.MuteBreakpoints<CR>
-nmap <leader>bb :action ToggleLineBreakpoint<CR>
-nmap <leader>tlb :action ToggleLineBreakpoint<CR>
+" replaced with multiple cursors commands
+"nmap <c-n> :action NextSplitter<cr>
+"nmap <c-p> :action PrevSplitter<cr>
 
-nmap <leader>dl  :action EditorDuplicate<cr>
-
+" Show Switcher
+"nmap <a-quote>switcher:action Switcher<CR>
 
 
 " Clojure specific mappings for Cursive
@@ -372,3 +362,8 @@ nmap <leader>dl  :action EditorDuplicate<cr>
 " Use Q for formatting the current paragraph (or visual selection)
 " vmap Q gq
 " nmap Q gqap
+
+" git flow
+" noremap \[ <ESC>:action Gitflow.OpenGitflowPopup<CR>
+" Vcs
+" noremap \] <ESC>:action Vcs.QuickListPopupAction<CR>
