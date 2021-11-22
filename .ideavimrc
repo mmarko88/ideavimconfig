@@ -32,37 +32,61 @@ nmap zk mbO<Esc>`b
 nmap zJ mbjdd`b
 nmap zK mbkdd`b
 nmap dl :action EditorDuplicate<cr>
-nmap Y v$y
+nmap Y vuy
+
+nmap <leader>spotbugs :action SpotBugs.AnalyseScope<CR>
+nmap <leader>sonar :action SonarLint.AnalyzeChangedFiles<CR>
+nmap <leader>qaplug :action QAPlug.AnalyzeCode<CR>
+nmap <leader>ic :action InspectCode<cr>
+nmap <leader>test :action Console.Open<CR>
+
+" Navigation
+nmap L :action Back<cr>
+nmap H :action Forward<cr>
+
+" New staff
+nnoremap ,e :action SearchEverywhere<CR>
+nnoremap ,f :action FindInPath<CR>
+nnoremap ,s :action FileStructurePopup<CR>
+nnoremap ,/ :action Find<cr>
+"nnoremap gp :action JumpToLastChange<CR>
+
+"nnoremap U :action FindUsages<CR>
+"nnoremap R :action RenameElement<CR>
+
+nnoremap == :action ReformatCode<CR>
+vnoremap == :action ReformatCode<CR>
+
+nnoremap cc :action CommentByLineComment<CR>
+vnoremap cc :action CommentByLineComment<CR>
+
+"nnoremap <C-CR> :action ShowIntentionActions<CR>
+"nnoremap <C-CR> :action EditorPopupMenu<CR>
+
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
 
 " Multiple cursors
 nmap <c-[> :action EditorCloneCaretAbove<CR>
 nmap <c-]> :action EditorCloneCaretBelow<CR>
 
 " Search
-nmap <leader>/ :action Find<cr>
-nmap <leader>\ :action FindInPath<cr>
-nmap <leader>fe :action SearchEverywhere<CR>
 nmap <leader>fip :action FindInPath<CR>
-" find in files
-nmap <leader>fif :action FindInPath<CR>
+"" find in files
 nmap <leader>fu :action FindUsages<CR>
 nmap <leader>fa :action GotoAction<CR>
-nmap , :action GotoAction<CR>
 nmap <leader>fc :action GotoClass<CR>
 nmap <leader>ff :action GotoFile<cr>
 nmap <leader>url :action GotoUrlAction<cr>
-" Navigation
-nmap H :action Back<CR>
-nmap L :action Forward<CR>
 
 nmap gd :action GotoDeclaration<CR>
 nmap gtd :action GotoTypeDeclaration<CR>
 nmap gs :action GotoSuperMethod<CR>
 nmap gi :action GotoImplementation<CR>
 nmap gf :action GotoFile<cr>
-nmap gcf :action RecentChangedFiles<cr>
 nmap gr :action RecentChangedFiles<cr>
 nmap grl :action RecentLocations<cr>
+nmap gE :action RecentLocations<cr>
 nmap ge :action RecentFiles<cr>
 nmap gt :action GotoTest<cr>
 nmap gp :action JumpToLastWindow<cr>
@@ -75,35 +99,26 @@ nmap grel :action GotoRelated<cr>
 " Git
 nmap <leader>gg :action Git.MainMenu<cr>
 
-" nmap <leader>M :action ActivateStructureToolWindow<cr>
+nmap <leader>M :action ActivateStructureToolWindow<cr>
 
 nmap <leader>I :action SelectIn<cr>
 nmap <leader>sel :action SelectIn<cr>
 nmap <C-,> :action MethodUp<cr>
 nmap <C-.> :action MethodDown<cr>
 
-" built-in navigation to navigated items works better
-nnoremap <c-o> :action Back<cr>
-nnoremap <c-i> :action Forward<cr>
 
 "Popups
 nmap <leader>fsp :action FileStructurePopup<CR>
-nmap <leader>msp :action FileStructurePopup<CR>
-nmap <leader>afs :action FileStructurePopup<CR>
 nmap <leader>sfp :action ShowFilePath<CR>
 nmap <leader>fp :action ShowFilePath<CR>
-nmap <leader>exe :action ShowFilePath<CR>
 nmap <leader>uml :action ShowUmlDiagramPopup<CR>
-nmap <leader>epm :action EditorPopupMenu<CR>
-"Context menu
+""Context menu
 nmap <leader>cm :action EditorPopupMenu<CR>
-nmap <leader>scm :action EditorPopupMenu<CR>
 nmap <leader>ha :action HideAllWindows<CR>
 nmap <leader>hw :action HideAllWindows<CR>
 nmap <leader>wh :action HideAllWindows<CR>
 
 nmap <leader>goto :action GoToCodeGroup<cr>
-nmap <leader>gs :action GotoSymbol<cr>
 nmap <leader>ga :action GotoAction<CR>
 nmap <leader>gc :action GotoClass<CR>
 nmap <leader>gm :action GoToMenu<CR>
@@ -114,7 +129,6 @@ nmap gurl :action GotoUrlAction<CR>
 " Actions
 nmap <c-p> :action ParameterInfo<CR>
 vmap <c-p> :action ParameterInfo<CR>
-nmap <leader>pi :action ParameterInfo<CR>
 nmap <leader>ch :action CallHierarchy<CR>
 nmap <leader>th :action TypeHierarchy<CR>
 nmap <leader>mh :action MethodHierarchy<CR>
@@ -125,7 +139,7 @@ nmap <leader>spw :action SelectInProjectView<CR>
 nmap <leader>S :action SelectInProjectView<CR>
 nmap <leader>h :action HideAllWindows<CR>
 nmap <leader>ann :action Annotate<CR>
-nmap <leader>reload <ESC>:source ~/.ideavimrc<CR>
+nmap <leader>reload :source ~/.ideavimrc<CR>
 
 " Projects
 nmap <leader>np :action NextProjectWindow<CR>
@@ -133,7 +147,7 @@ nmap <leader>pp :action PreviousProjectWindow<CR>
 nmap <leader>pw :action OpenProjectWindows<CR>
 
 " tools
-"nmap <leader>annotate :action Annotate<CR>
+nmap <leader>annotate :action Annotate<CR>
 nmap <leader>atw :action ActivateTerminalToolWindow<CR>
 nmap <leader>cmd :action ActivateTerminalToolWindow<CR>
 nnoremap <a-0> :action ActivateTerminalToolWindow<CR>
@@ -153,7 +167,7 @@ nmap <leader>rf :action RefactoringMenu<CR>
 
 nmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 vmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
-" Inspection
+"" Inspection
 nmap <leader>ric :action InspectCode<cr>
 
 " key bindings for quickly moving between windows
@@ -162,15 +176,15 @@ nmap <leader>wh <c-w>h
 nmap <leader>wl <c-w>l
 nmap <leader>wk <c-w>k
 nmap <leader>wj <c-w>j
-
-" Closing tabs
+"
+"" Closing tabs
 nmap <leader>wc :action CloseContent<cr>
 nmap <leader>wC :action ReopenClosedTab<cr>
-" To navigate between split panes
+"" To navigate between split panes
 nmap <leader>wn :action NextSplitter<cr>
 nmap <leader>wp :action PrevSplitter<cr>
 " nmap <leader>j :action PrevSplitter<cr>
-" Splits manipulation
+"" Splits manipulation
 nmap <leader>sh :action SplitHorizontally<cr>
 nmap <leader>sv :action SplitVertically<cr>
 nmap <leader>hs :action SplitHorizontally<cr>
@@ -201,14 +215,14 @@ nmap <c-s-m>  :action EditorScrollToCenter<cr>
 "EditorScrollTop
 "EditorScrollBottom
 
-"nmap / :action Find<cr>
+nmap / :action Find<cr>
 
 nmap <leader>find :action Find<cr>
 nmap <leader>fi :action Find<cr>
 vmap <leader>find :action Find<cr>
 vmap <leader>fi :action Find<cr>
-
-" Building, Running and Debugging
+"
+"" Building, Running and Debugging
 nmap <leader>cd :action CompileDirty<cr>
 nmap <leader>run :action Run<cr>
 " double ctrl
@@ -259,30 +273,32 @@ nmap <leader>vbb :action ViewBreakpoints<CR>
 nmap <leader>bbs :action XDebugger.MuteBreakpoints<CR>
 nmap <leader>bb :action ToggleLineBreakpoint<CR>
 
-nmap <leader>co Console.Open<CR>
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
 
-"nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
-"nmap <leader>fav :action ActivateFavoritesToolWindow<CR>
-"nmap <leader>faw :action ActivateFavoritesToolWindow<CR>
-"nmap <Leader>apw :action ActivateProjectToolWindow<CR>
-"nmap <leader>adw :action ActivateDebugToolWindow<CR>
-"nmap <leader>dbgw :action ActivateDebugToolWindow<CR>
-"nmap <leader>debugw :action ActivateDebugToolWindow<CR>
-"nmap <Leader>arw :action ActivateRunToolWindow<CR>
-"nmap <Leader>runw :action ActivateRunToolWindow<CR>
-"nmap <Leader>apw :action ActivateProblemsViewToolWindow<CR>
-"nmap <Leader>problems :action ActivateProblemsViewToolWindow<CR>
-"nmap <Leader>asw :action ActivateStructureToolWindow<CR>
-"map <Leader>structure :action ActivateStructureToolWindow<CR>
-"nmap <Leader>todo :action ActivateTODOToolWindow<CR>
+nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
+nmap <leader>fav :action ActivateFavoritesToolWindow<CR>
+nmap <leader>faw :action ActivateFavoritesToolWindow<CR>
+nmap <Leader>apw :action ActivateProjectToolWindow<CR>
+nmap <leader>adw :action ActivateDebugToolWindow<CR>
+nmap <leader>dbgw :action ActivateDebugToolWindow<CR>
+nmap <leader>debugw :action ActivateDebugToolWindow<CR>
+nmap <leader>arw :action ActivateRunToolWindow<CR>
+nmap <leader>runw :action ActivateRunToolWindow<CR>
+nmap <leader>apw :action ActivateProblemsViewToolWindow<CR>
+nmap <leader>problems :action ActivateProblemsViewToolWindow<CR>
+nmap <leader>asw :action ActivateStructureToolWindow<CR>
+map <leader>structure :action ActivateStructureToolWindow<CR>
+nmap <leader>todo :action ActivateTODOToolWindow<CR>
 
 
 " VCS operations
-" nmap <leader>yy :action Vcs.Show.Local.Changes<cr>
+nmap <leader>change :action Vcs.Show.Local.Changes<cr>
 " nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
 " nmap <leader>ya :action Annotate<cr>
-" nmap <leader>yl :action Vcs.Show.Log<cr>
-" nmap <leader>yd :action Compare.LastVersion<cr>
+nmap <leader>log :action Vcs.Show.Log<cr>
+nmap <leader>clv :action Compare.LastVersion<cr>
 " nmap <leader>yr :action Git.ResolveConflicts<cr>
 
 " IdeaVim uses 'a' for alt instead of Vim's 'm'
@@ -367,3 +383,39 @@ nmap <leader>co Console.Open<CR>
 " noremap \[ <ESC>:action Gitflow.OpenGitflowPopup<CR>
 " Vcs
 " noremap \] <ESC>:action Vcs.QuickListPopupAction<CR>
+sethandler <C-S-Q> a:ide
+sethandler <C-.> a:vim
+sethandler <A-0> a:vim
+sethandler <C-2> a:vim
+sethandler <C-A> a:vim
+sethandler <C-B> a:vim
+sethandler <C-C> a:vim
+sethandler <C-D> a:vim
+sethandler <C-E> a:vim
+sethandler <C-F> a:ide
+sethandler <C-G> a:vim
+sethandler <C-H> a:vim
+sethandler <C-S-H> a:vim
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-S-J> a:vim
+sethandler <C-S-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-S-L> a:vim
+sethandler <C-M> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <A-O> a:vim
+sethandler <A-S-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-Q> a:ide
+sethandler <C-R> a:vim
+sethandler <C-S> a:vim
+sethandler <C-T> a:vim
+sethandler <C-U> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:ide
+sethandler <C-X> a:vim
+sethandler <C-Y> a:vim
+sethandler <C-[> a:vim
+sethandler <C-]> a:vim
