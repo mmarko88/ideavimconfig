@@ -21,6 +21,7 @@ set commentary
 set match.it
 "https://github.com/dbakker/vim-paragraph-motion
 set vim-paragraph-motion
+
 " adds argument to cd - actions
 set argtextobj
 " highlight yanked text
@@ -34,7 +35,7 @@ set clipboard+=ideaput
 " Use Idea to join lines smartly
 set ideajoin
 "use idearefactormode to stay in the mode in which you started editing the template
-"set idearefactormode=keep
+set idearefactormode=keep
 
 " show mode in status bar
 set showmode
@@ -63,7 +64,7 @@ let g:qs_primary_color = '#ff0000'
 let g:qs_secondary_color = '#ff00ff'
 " let maplocalleader = ","
 
-map <leader>q <Plug>(multicursor-ms/)
+"map <leader>q <Plug>(multicursor-ms/)
 "map <leader>z <Plug>(multicursor-mcv)
 "map <leader>Z <Plug>(multicursor-mcr)
 
@@ -75,7 +76,7 @@ nmap zk mbO<Esc>`b
 nmap zJ mbjdd`b
 nmap zK mbkdd`b
 nmap dl :action EditorDuplicate<cr>
-nmap Y vuy
+nmap Y v$y
 
 nmap <leader>spotbugs :action SpotBugs.AnalyseScope<CR>
 nmap <leader>sonar :action SonarLint.AnalyzeChangedFiles<CR>
@@ -92,14 +93,17 @@ map L <action>(Forward)
 " Terminal
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
-nnoremap ,, :action TypeAndGoInvoke<CR>
+"nnoremap ,, :action TypeAndGoInvoke<CR>
 " New staff
 nnoremap ,e :action SearchEverywhere<CR>
 nnoremap ,f :action FindInPath<CR>
 nnoremap ,s :action FileStructurePopup<CR>
+nnoremap ,/ :action Find<cr>
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
 "nnoremap gp :action JumpToLastChange<CR>
 
-"noremap U :action FindUsages<CR>
+"nnoremap U :action FindUsages<CR>
 "nnoremap R :action RenameElement<CR>
 
 nnoremap == :action ReformatCode<CR>
@@ -108,15 +112,15 @@ vnoremap == :action ReformatCode<CR>
 "nnoremap <C-CR> :action ShowIntentionActions<CR>
 "nnoremap <C-CR> :action EditorPopupMenu<CR>
 
-nnoremap ,a :action GotoAction<CR>
-vnoremap ,a :action GotoAction<CR>
 "nnoremap ,, :action LocalHistory.ShowHistory<CR>
+
 " Multiple cursors
 nmap <a-[> :action EditorCloneCaretAbove<CR>
 nmap <a-]> :action EditorCloneCaretBelow<CR>
 
 " Search
 nmap <leader>fip :action FindInPath<CR>
+
 "" find in files
 nmap <leader>fu :action FindUsages<CR>
 nmap <leader>fa :action GotoAction<CR>
@@ -130,7 +134,6 @@ nmap gs :action GotoSuperMethod<CR>
 nmap gi :action GotoImplementation<CR>
 nmap gf :action GotoFile<cr>
 nmap gr :action RecentChangedFiles<cr>
-nmap grl :action RecentLocations<cr>
 nmap gE :action RecentLocations<cr>
 nmap ge :action RecentFiles<cr>
 nmap gt :action GotoTest<cr>
@@ -138,10 +141,10 @@ nmap gp :action JumpToLastWindow<cr>
 nmap gb :action ShowBookmarks<cr>
 nmap g, :action JumpToLastChange<CR>
 nmap g. :action JumpToNextChange<CR>
-nmap grel :action GotoRelated<cr>
+nmap gl :action GotoRelated<cr>
 
 
-" Git
+ Git
 nmap <leader>gg :action Git.MainMenu<cr>
 
 "nmap <leader>M :action ActivateStructureToolWindow<cr>
@@ -155,8 +158,8 @@ nmap <C-S-.> :action VcsShowPrevChangeMarker<cr>
 
 "Popups
 nmap <leader>fsp :action FileStructurePopup<CR>
-nmap <leader>sfp :action ShowFilePath<CR>
 nmap <leader>fp :action ShowFilePath<CR>
+nmap ,fp :action ShowFilePath<CR>
 nmap <leader>uml :action ShowUmlDiagramPopup<CR>
 ""Context menu
 nmap <leader>cm :action EditorPopupMenu<CR>
@@ -168,7 +171,6 @@ nmap <leader>wh :action HideAllWindows<CR>
 nmap <leader>goto :action GoToCodeGroup<cr>
 nmap <leader>ga :action GotoAction<CR>
 nmap <leader>gc :action GotoClass<CR>
-nmap <leader>gm :action GoToMenu<CR>
 nmap gm :action GoToMenu<CR>
 vmap gm :action GoToMenu<CR>
 nmap gurl :action GotoUrlAction<CR>
@@ -215,13 +217,17 @@ nmap <leader>h :action HideAllWindows<CR>
 nmap <leader>ann :action Annotate<CR>
 nmap <leader>reload :source ~/.ideavimrc<CR>
 
+"movement
+map w [w
+map e ]w
+map b [b
+
 " Projects
 nmap <leader>np :action NextProjectWindow<CR>
 nmap <leader>pp :action PreviousProjectWindow<CR>
 nmap <leader>pw :action OpenProjectWindows<CR>
 
 " tools
-nmap <leader>annotate :action Annotate<CR>
 nmap <leader>atw :action ActivateTerminalToolWindow<CR>
 nmap <leader>cmd :action ActivateTerminalToolWindow<CR>
 nnoremap <a-0> :action ActivateTerminalToolWindow<CR>
@@ -243,7 +249,7 @@ nmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 vmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 
 "" Inspection
-nmap <leader>ric :action InspectCode<cr>
+nmap <leader>inspect :action InspectCode<cr>
 
 " key bindings for quickly moving between windows
 " h left, l right, k up, j down
@@ -252,9 +258,6 @@ nmap <leader>wl <c-w>l
 nmap <leader>wk <c-w>k
 nmap <leader>wj <c-w>j
 "
-"" Closing tabs
-nmap <leader>wc :action CloseContent<cr>
-nmap <leader>wC :action ReopenClosedTab<cr>
 "" To navigate between split panes
 nmap <leader>wn :action NextSplitter<cr>
 nmap <leader>wp :action PrevSplitter<cr>
@@ -273,35 +276,45 @@ nmap <leader>woo :action OpenEditorInOppositeTabGroup<cr>
 nmap <leader>jdoc :action com.github.setial.intellijjavadocs.action.JavaDocGenerateActionOnEditor<cr>
 
 " easy window navigation
+nmap <a-s-h> :action TabShiftActions.StretchLeft<CR>
+nmap <a-s-l> :action TabShiftActions.StretchRightCR>
+nmap <a-s-j> :action TabShiftActions.StretchDown<CR>
+nmap <a-s-k> :action TabShiftActions.StretchUp<CR>
+
+nmap <c-l> <c-w>l
 nmap <a-l> <c-w>l
 nmap <a-h> <c-w>h
 nmap <a-o> :action MoveEditorToOppositeTabGroup<cr>
 nmap <a-s-O> :action OpenEditorInOppositeTabGroup<cr>
 " scrolling
-nmap <c-j> :action EditorScrollUp<cr>
-nmap <c-k> :action EditorScrollDown<cr>
-nmap <c-h> :action EditorScrollLeft<cr>
-nmap <c-l> :action EditorScrollRight<cr>
-nmap <c-m> :action EditorScrollToCenter<cr>
+nmap <c-s-j> :action EditorScrollUp<cr>
+nmap <c-s-k>  :action EditorScrollDown<cr>
+nmap <c-s-h>  :action EditorScrollLeft<cr>
+nmap <c-s-l>  :action EditorScrollRight<cr>
+nmap <c-s-m>  :action EditorScrollToCenter<cr>
+vmap <c-s-j>  :action EditorScrollUp<cr>
+vmap <c-s-k>  :action EditorScrollDown<cr>
+vmap <c-s-h>  :action EditorScrollLeft<cr>
+vmap <c-s-l>  :action EditorScrollRight<cr>
+vmap <c-s-m>  :action EditorScrollToCenter<cr>
 "EditorScrollTop
 "EditorScrollBottom
 nnoremap <C-]> :action SelectNextOccurrence<cr>
 
-nmap / :action Find<cr>
+nmap // :action Find<cr>
+vmap // :action Find<cr>
 
-nmap <leader>find :action Find<cr>
 nmap <leader>fi :action Find<cr>
 vmap <leader>find :action Find<cr>
 vmap <leader>fi :action Find<cr>
-"
+
 "" Building, Running and Debugging
-nmap <leader>compile :action CompileDirty<cr>
-nmap <leader>run :action Run<cr>
+nmap <leader>ru :action Run<cr>
 " double ctrl
-"nmap <leader>ra :action RunAnything<cr>
+"vmap <leader>ra :action RunAnything<cr>
 nmap <leader>rm :action RunMenu<cr>
-nmap <leader>rrt :action RerunTests<cr>
-nmap <leader>rrft :action RerunFailedTests<cr>
+nmap <leader>run :action RerunTests<cr>
+nmap <leader>ruf :action RerunFailedTests<cr>
 nmap <leader>rc :action RunConfiguration<cr>
 
 "Debug
@@ -323,11 +336,6 @@ nmap <leader>exec :action EvaluateExpression<CR>
 vmap <leader>eval :action EvaluateExpression<CR>
 vmap <leader>ee :action EvaluateExpression<CR>
 vmap <leader>exec :action EvaluateExpression<CR>
-"Quick evaluate
-nmap <leader>qeval :action QuickEvaluateExpression<CR>
-vmap <leader>qeval :action QuickEvaluateExpression<CR>
-nmap <leader>qe :action QuickEvaluateExpression<CR>
-vmap <leader>qe :action QuickEvaluateExpression<CR>
 " Evaluate parameter
 nmap <leader>ep :action QuickEvaluateExpression<CR>
 vmap <leader>ep :action QuickEvaluateExpression<CR>
@@ -348,26 +356,32 @@ nmap <leader>bb :action ToggleLineBreakpoint<CR>
 " built-in navigation to navigated items works better
 map <C-o> <action>(Back)
 map <C-i> <action>(Forward)
+vmap <c-a-e> :action QuickEvaluateExpression<CR>
+nmap <c-a-e> :action QuickEvaluateExpression<CR>
+nmap <c-a-i> :action ExpressionTypeInfo<CR>
+vmap <c-a-i> :action ExpressionTypeInfo<CR>
 
+" Breakpoints
+nmap [bv :action ViewBreakpoints<CR>
+nmap [bm :action XDebugger.MuteBreakpoints<CR>
+nmap [bb :action ToggleLineBreakpoint<CR>
+
+" built-in navigation to navigated items works better
+"nnoremap <c-o> :action Back<cr>
+"nnoremap <c-i> :action Forward<cr>
+>>>>>>> 40d827043d05a59091fe1fe5cee8bd3e386b70a9
+
+" Tool windows
 nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
-nmap <leader>fav :action ActivateFavoritesToolWindow<CR>
-nmap <leader>faw :action ActivateFavoritesToolWindow<CR>
 nmap <Leader>apw :action ActivateProjectToolWindow<CR>
 nmap <leader>adw :action ActivateDebugToolWindow<CR>
-nmap <leader>dbgw :action ActivateDebugToolWindow<CR>
-nmap <leader>debugw :action ActivateDebugToolWindow<CR>
 nmap <leader>arw :action ActivateRunToolWindow<CR>
-nmap <leader>runw :action ActivateRunToolWindow<CR>
-nmap <leader>apw :action ActivateProblemsViewToolWindow<CR>
-nmap <leader>problems :action ActivateProblemsViewToolWindow<CR>
-nmap <leader>asw :action ActivateStructureToolWindow<CR>
-map <leader>structure :action ActivateStructureToolWindow<CR>
+nmap <leader>aprw :action ActivateProblemsViewToolWindow<CR>
 nmap <leader>todo :action ActivateTODOToolWindow<CR>
-
-
 
 " VCS operations
 nmap <leader>change :action Vcs.Show.Local.Changes<cr>
+nmap <leader>comm :action Vcs.Show.Local.Changes<cr>
 " nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
 " nmap <leader>ya :action Annotate<cr>
 nmap <leader>log :action Vcs.Show.Log<cr>
@@ -380,10 +394,6 @@ nmap <leader>reset :action RestartIde<CR>
 
 " IdeaVim uses 'a' for alt instead of Vim's 'm'
 
-" Won't work in visual mode (with vmap) for some reason.
-" Use default map of <c-/> for that.
-" nmap gcc :action CommentByLineComment<cr>
-
 " unimpaired mappings - from https://github.com/saaguero/ideavimrc/blob/master/.ideavimrc
 " nnoremap [<space> O<esc>j
 " nnoremap ]<space> o<esc>k
@@ -391,51 +401,17 @@ nmap <leader>reset :action RestartIde<CR>
 " nnoremap ]q :action NextOccurence<cr>
 " nnoremap [m :action MethodUp<cr>
 " nnoremap ]m :action MethodDown<cr>
+"nnoremap [c :action VcsShowPrevChangeMarker<cr>
+"nnoremap ]c :action VcsShowNextChangeMarker<cr>
 
 " Errors
 "nmap <leader>gne :action GotoNextError<cr>
 "nmap <leader>gpe :action GotoPreviousError<cr>
 "nmap <leader>sed :action ShowErrorDescription<cr>
 
-
-" replaced with multiple cursors commands
-"nmap <c-n> :action NextSplitter<cr>
-"nmap <c-p> :action PrevSplitter<cr>
-
 " Show Switcher
-"nmap <a-quote>switcher:action Switcher<CR>
 
-
-" Clojure specific mappings for Cursive
-" nmap \c :action :cursive.repl.actions/clear-repl<cr>
-" nmap \l :action :cursive.repl.actions/load-file<cr>
-" nmap \o :action :cursive.repl.actions/jump-to-output<cr>
-" nmap \r :action :cursive.repl.actions/jump-to-repl<cr>
-" nmap \t :action :cursive.testing.actions/run-ns-tests<cr>
-" nmap \T :action :cursive.testing.actions/rerun-last-test<cr>
-" nmap \C :action :cursive.testing.actions/remove-test-markers<cr>
-
-" :cursive.repl.actions/clojure-repl-commands-group
-" :cursive.repl.actions/clojure-repl-group
-" :cursive.repl.actions/interrupt
-" :cursive.repl.actions/jump-to-output
-" :cursive.repl.actions/jump-to-repl                 <C-\>
-" :cursive.repl.actions/load-file                    <A-S-L>
-" :cursive.repl.actions/macroexpansion               <C-S-\>
-" :cursive.repl.actions/next-history-item            <C-Down>
-" :cursive.repl.actions/prev-history-item            <C-Up>
-" :cursive.repl.actions/print-exception
-" :cursive.repl.actions/run-last-sexp
-" :cursive.repl.actions/run-top-sexp                 <A-S-P>
-" :cursive.repl.actions/search-history               <A-C-E>
-" :cursive.repl.actions/switch-namespace             <A-S-R>
-" :cursive.repl.actions/sync-files                   <A-S-M>
-" :cursive.repl.commands/add-new
-" :cursive.repl.commands/edit
-" :cursive.testing.actions/remove-test-markers
-" :cursive.testing.actions/rerun-last-test
-" :cursive.testing.actions/run-ns-tests
-" :cursive.testing.actions/run-single-test
+nmap [s :action Switcher<CR>
 
 " External GVim
 " nmap <leader>gvim :action Tool_External Tools_gvim<cr>
@@ -445,10 +421,6 @@ nmap <leader>reset :action RestartIde<CR>
 
 " External Sublime Text
 " nmap <leader>S :action Tool_External Tools_sublime_text<cr>
-
-" Use Q for formatting the current paragraph (or visual selection)
-" vmap Q gq
-" nmap Q gqap
 
 " git flow
 " noremap \[ <ESC>:action Gitflow.OpenGitflowPopup<CR>
@@ -496,6 +468,7 @@ sethandler <C-=> a:vim
 sethandler <C-n> a:vim
 sethandler <C-]> a:vim
 sethandler <C-[> a:vim
+
 " Zoom
 nnoremap <C--> :action EditorDecreaseFontSize<CR>
 nnoremap <C-=> :action EditorIncreaseFontSize<CR>
