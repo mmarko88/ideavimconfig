@@ -1,29 +1,72 @@
+"Doc: https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
 set hlsearch
 set ignorecase
+" Do incremental searching.
+"highlights the search string while typing
+set incsearch
 set smartcase
-set scrolloff=3 " 3 lines above/below cursor when scrolling
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5 " 3 lines above/below cursor when scrolling
 
 " Emulated Plugins
+"https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
 set surround
 " See vim exchange
+" https://github.com/tommcdo/vim-exchange
 set exchange
+" https://github.com/tpope/vim-commentary
+set commentary
+" https://catonmat.net/vim-plugins-matchit-vim
+set match.it
+"https://github.com/dbakker/vim-paragraph-motion
+set vim-paragraph-motion
 " adds argument to cd - actions
 set argtextobj
 " highlight yanked text
 set highlightedyank
+" project explorer
+set NERDTree
 " Copy to system clipboard as well
+"Both set clipboard+=unnamed and set clipboard+=ideaput let you copy paste from the system and PyCharm clipboards"
 set clipboard+=unnamed
+set clipboard+=ideaput
 " Use Idea to join lines smartly
 set ideajoin
+"use idearefactormode to stay in the mode in which you started editing the template
+"set idearefactormode=keep
+
+" show mode in status bar
+set showmode
+" shows command in the status line
+set showcmd
+" Plugins settings --------------------------------------
+let g:argtextobj_pairs="(:),{:},[:],<:>"
+
+"If true, creation of global mark will trigger creation of IDE's bookmark and vice versa.
+set ideamarks
+set sneak
+"If you are using ideavim-sneak please ensure set quickscope is placed after set sneak.
+set quickscope
+
+set multicursor
 
 " Multiple cursors support
 "set multiple-cursors
-
+nnoremap <c-\> :action ToggleDistractionFreeMode<CR>
 " These settings are from - https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
 
 " let mapleader = ","
 let mapleader = " "
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_primary_color = '#ff0000'
+let g:qs_secondary_color = '#ff00ff'
 " let maplocalleader = ","
+
+map <leader>q <Plug>(multicursor-ms/)
+"map <leader>z <Plug>(multicursor-mcv)
+"map <leader>Z <Plug>(multicursor-mcr)
+
 
 " edit text
 " These create newlines like o and O but stay in normal mode
@@ -40,35 +83,37 @@ nmap <leader>qaplug :action QAPlug.AnalyzeCode<CR>
 nmap <leader>ic :action InspectCode<cr>
 nmap <leader>test :action Console.Open<CR>
 
-" Navigation
-nmap L :action Back<cr>
-nmap H :action Forward<cr>
+nmap ,ee :action Tool_External Tools_emacs<CR>
 
+" Navigation
+map H <action>(Back)
+map L <action>(Forward)
+
+" Terminal
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+nnoremap ,, :action TypeAndGoInvoke<CR>
 " New staff
 nnoremap ,e :action SearchEverywhere<CR>
 nnoremap ,f :action FindInPath<CR>
 nnoremap ,s :action FileStructurePopup<CR>
-nnoremap ,/ :action Find<cr>
 "nnoremap gp :action JumpToLastChange<CR>
 
-"nnoremap U :action FindUsages<CR>
+"noremap U :action FindUsages<CR>
 "nnoremap R :action RenameElement<CR>
 
 nnoremap == :action ReformatCode<CR>
 vnoremap == :action ReformatCode<CR>
-
-nnoremap cc :action CommentByLineComment<CR>
-vnoremap cc :action CommentByLineComment<CR>
 
 "nnoremap <C-CR> :action ShowIntentionActions<CR>
 "nnoremap <C-CR> :action EditorPopupMenu<CR>
 
 nnoremap ,a :action GotoAction<CR>
 vnoremap ,a :action GotoAction<CR>
-
+"nnoremap ,, :action LocalHistory.ShowHistory<CR>
 " Multiple cursors
-nmap <c-[> :action EditorCloneCaretAbove<CR>
-nmap <c-]> :action EditorCloneCaretBelow<CR>
+nmap <a-[> :action EditorCloneCaretAbove<CR>
+nmap <a-]> :action EditorCloneCaretBelow<CR>
 
 " Search
 nmap <leader>fip :action FindInPath<CR>
@@ -99,13 +144,14 @@ nmap grel :action GotoRelated<cr>
 " Git
 nmap <leader>gg :action Git.MainMenu<cr>
 
-nmap <leader>M :action ActivateStructureToolWindow<cr>
+"nmap <leader>M :action ActivateStructureToolWindow<cr>
 
 nmap <leader>I :action SelectIn<cr>
 nmap <leader>sel :action SelectIn<cr>
 nmap <C-,> :action MethodUp<cr>
 nmap <C-.> :action MethodDown<cr>
-
+nmap <C-S-,> :action VcsShowNextChangeMarker<cr>
+nmap <C-S-.> :action VcsShowPrevChangeMarker<cr>
 
 "Popups
 nmap <leader>fsp :action FileStructurePopup<CR>
@@ -114,6 +160,7 @@ nmap <leader>fp :action ShowFilePath<CR>
 nmap <leader>uml :action ShowUmlDiagramPopup<CR>
 ""Context menu
 nmap <leader>cm :action EditorPopupMenu<CR>
+vmap <leader>cm :action EditorPopupMenu<CR>
 nmap <leader>ha :action HideAllWindows<CR>
 nmap <leader>hw :action HideAllWindows<CR>
 nmap <leader>wh :action HideAllWindows<CR>
@@ -126,16 +173,43 @@ nmap gm :action GoToMenu<CR>
 vmap gm :action GoToMenu<CR>
 nmap gurl :action GotoUrlAction<CR>
 
+"View show/hide
+nmap vvmm :action CodeGlance.toggle<CR>
+nmap vvii :action EditorToggleShowGutterIcons<CR>
+nmap vvln :action EditorToggleShowLineNumbers<CR>
+nmap vvpp :action ShowProcessWindow<CR>
+nmap vvpw :action ShowProcessWindow<CR>
+nmap vvbp :action ShowProcessWindow<CR>
+nmap vvcc :action EditorPopupMenu<CR>
+nmap vvcb :action EditorPopupMenu<CR>
+vmap vvcc :action EditorPopupMenu<CR>
+vmap vvcm :action EditorPopupMenu<CR>
+nmap vvss :action ViewStatusBar<CR>
+nmap vvsb :action ViewStatusBar<CR>
+nmap vvbb :action ViewToolButtons<CR>
+nmap vvtb :action ViewToolButtons<CR>
+nmap vvtt :action ViewToolButtons<CR>
+nmap vvtool :action ViewToolButtons<CR>
+nmap vvim :action VimFindActionIdAction<CR>
+"Those commands doesn't work anymore with new version of idea
+"nmap vvnb :action ViewNavigationBar<CR>
+"nmap vvtool :action ViewToolBar<CR>
+
+"Side panel switcher - using defaults
+"Allows switching visibility of tool window groups associated with left/right/bottom of the ide frame by simple keyboard shortcut.  Shortcuts:
+"shift + space - switch bottom tool windows
+"shift + F1 - switch right tool windows
+"shift + esc - switch left tool windows
+
 " Actions
 nmap <c-p> :action ParameterInfo<CR>
 vmap <c-p> :action ParameterInfo<CR>
-nmap <leader>ch :action CallHierarchy<CR>
+nmap <leader>ch :action CallHierarch<CR>
 nmap <leader>th :action TypeHierarchy<CR>
 nmap <leader>mh :action MethodHierarchy<CR>
 nmap <leader>sb :action SliceBackward<CR>
 nmap <leader>sf :action SliceForward<CR>
 nmap <leader>qd :action QuickJavaDoc<CR>
-nmap <leader>spw :action SelectInProjectView<CR>
 nmap <leader>S :action SelectInProjectView<CR>
 nmap <leader>h :action HideAllWindows<CR>
 nmap <leader>ann :action Annotate<CR>
@@ -167,6 +241,7 @@ nmap <leader>rf :action RefactoringMenu<CR>
 
 nmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 vmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
+
 "" Inspection
 nmap <leader>ric :action InspectCode<cr>
 
@@ -185,35 +260,32 @@ nmap <leader>wn :action NextSplitter<cr>
 nmap <leader>wp :action PrevSplitter<cr>
 " nmap <leader>j :action PrevSplitter<cr>
 "" Splits manipulation
-nmap <leader>sh :action SplitHorizontally<cr>
-nmap <leader>sv :action SplitVertically<cr>
-nmap <leader>hs :action SplitHorizontally<cr>
-nmap <leader>vs :action SplitVertically<cr>
-nmap <leader>mm :action Unsplit<cr>
-nmap <leader>max :action UnsplitAll<cr>
+nmap <leader>ws :action SplitHorizontally<cr>
+nmap <leader>wv :action SplitVertically<cr>
 nmap <leader>us :action Unsplit<cr>
-nmap <leader>usa :action UnsplitAll<cr>
-nmap <leader>jlw :action JumpToLastWindow<cr>
-nmap <leader>mo :action MoveEditorToOppositeTabGroup<cr>
-nmap <leader>oo :action OpenEditorInOppositeTabGroup<cr>
+nmap <leader>wdo :action UnsplitAll<cr>
+nmap <leader>wjl :action JumpToLastWindow<cr>
+nmap <leader>wmo :action MoveEditorToOppositeTabGroup<cr>
+nmap <leader>woo :action OpenEditorInOppositeTabGroup<cr>
+
+
+"javadoc"
+nmap <leader>jdoc :action com.github.setial.intellijjavadocs.action.JavaDocGenerateActionOnEditor<cr>
 
 " easy window navigation
-nmap <c-l> <c-w>l
 nmap <a-l> <c-w>l
-nmap <c-j> <c-w>j
-nmap <c-h> <c-w>h
 nmap <a-h> <c-w>h
-nmap <c-k> <c-w>k
 nmap <a-o> :action MoveEditorToOppositeTabGroup<cr>
 nmap <a-s-O> :action OpenEditorInOppositeTabGroup<cr>
 " scrolling
-nmap <c-s-j> :action EditorScrollUp<cr>
-nmap <c-s-k>  :action EditorScrollDown<cr>
-nmap <c-s-h>  :action EditorScrollLeft<cr>
-nmap <c-s-l>  :action EditorScrollRight<cr>
-nmap <c-s-m>  :action EditorScrollToCenter<cr>
+nmap <c-j> :action EditorScrollUp<cr>
+nmap <c-k> :action EditorScrollDown<cr>
+nmap <c-h> :action EditorScrollLeft<cr>
+nmap <c-l> :action EditorScrollRight<cr>
+nmap <c-m> :action EditorScrollToCenter<cr>
 "EditorScrollTop
 "EditorScrollBottom
+nnoremap <C-]> :action SelectNextOccurrence<cr>
 
 nmap / :action Find<cr>
 
@@ -223,7 +295,7 @@ vmap <leader>find :action Find<cr>
 vmap <leader>fi :action Find<cr>
 "
 "" Building, Running and Debugging
-nmap <leader>cd :action CompileDirty<cr>
+nmap <leader>compile :action CompileDirty<cr>
 nmap <leader>run :action Run<cr>
 " double ctrl
 "nmap <leader>ra :action RunAnything<cr>
@@ -262,20 +334,20 @@ vmap <leader>ep :action QuickEvaluateExpression<CR>
 nmap <leader>ti :action ExpressionTypeInfo<CR>
 vmap <leader>ti :action ExpressionTypeInfo<CR>
 
-" Check data flow analysis
-" Igor debugging
-" Check stream debugger
+" SQL
+nmap <leader>exec :action Console.Jdbc.Execute<CR>
+vmap <leader>exec :action Console.Jdbc.Execute<CR>
 
 
 " Breakpoints
-nmap <leader>vbb :action ViewBreakpoints<CR>
+nmap <leader>bbv :action ViewBreakpoints<CR>
 " Stop break points
 nmap <leader>bbs :action XDebugger.MuteBreakpoints<CR>
 nmap <leader>bb :action ToggleLineBreakpoint<CR>
 
 " built-in navigation to navigated items works better
-nnoremap <c-o> :action Back<cr>
-nnoremap <c-i> :action Forward<cr>
+map <C-o> <action>(Back)
+map <C-i> <action>(Forward)
 
 nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
 nmap <leader>fav :action ActivateFavoritesToolWindow<CR>
@@ -293,6 +365,7 @@ map <leader>structure :action ActivateStructureToolWindow<CR>
 nmap <leader>todo :action ActivateTODOToolWindow<CR>
 
 
+
 " VCS operations
 nmap <leader>change :action Vcs.Show.Local.Changes<cr>
 " nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
@@ -300,6 +373,10 @@ nmap <leader>change :action Vcs.Show.Local.Changes<cr>
 nmap <leader>log :action Vcs.Show.Log<cr>
 nmap <leader>clv :action Compare.LastVersion<cr>
 " nmap <leader>yr :action Git.ResolveConflicts<cr>
+"nnoremap <leader><leader> <C-Tab>
+
+
+nmap <leader>reset :action RestartIde<CR>
 
 " IdeaVim uses 'a' for alt instead of Vim's 'm'
 
@@ -314,8 +391,6 @@ nmap <leader>clv :action Compare.LastVersion<cr>
 " nnoremap ]q :action NextOccurence<cr>
 " nnoremap [m :action MethodUp<cr>
 " nnoremap ]m :action MethodDown<cr>
-" nnoremap [c :action VcsShowPrevChangeMarker<cr>
-" nnoremap ]c :action VcsShowNextChangeMarker<cr>
 
 " Errors
 "nmap <leader>gne :action GotoNextError<cr>
@@ -340,10 +415,6 @@ nmap <leader>clv :action Compare.LastVersion<cr>
 " nmap \T :action :cursive.testing.actions/rerun-last-test<cr>
 " nmap \C :action :cursive.testing.actions/remove-test-markers<cr>
 
-" Python specific mappings
-" Format code with Black fomatter
-" nmap \p :action Tool_External Tools_Black<cr>
-
 " :cursive.repl.actions/clojure-repl-commands-group
 " :cursive.repl.actions/clojure-repl-group
 " :cursive.repl.actions/interrupt
@@ -367,7 +438,7 @@ nmap <leader>clv :action Compare.LastVersion<cr>
 " :cursive.testing.actions/run-single-test
 
 " External GVim
-" nmap <leader>v :action Tool_External Tools_gvim<cr>
+" nmap <leader>gvim :action Tool_External Tools_gvim<cr>
 
 " External Emacs
 " nmap <leader>E :action Tool_External Tools_emacsclient<cr>
@@ -419,3 +490,12 @@ sethandler <C-X> a:vim
 sethandler <C-Y> a:vim
 sethandler <C-[> a:vim
 sethandler <C-]> a:vim
+sethandler <C-+> a:vim
+sethandler <C--> a:vim
+sethandler <C-=> a:vim
+sethandler <C-n> a:vim
+sethandler <C-]> a:vim
+sethandler <C-[> a:vim
+" Zoom
+nnoremap <C--> :action EditorDecreaseFontSize<CR>
+nnoremap <C-=> :action EditorIncreaseFontSize<CR>
