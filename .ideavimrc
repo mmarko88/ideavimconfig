@@ -64,11 +64,6 @@ let g:qs_primary_color = '#ff0000'
 let g:qs_secondary_color = '#ff00ff'
 " let maplocalleader = ","
 
-"map <leader>q <Plug>(multicursor-ms/)
-"map <leader>z <Plug>(multicursor-mcv)
-"map <leader>Z <Plug>(multicursor-mcr)
-
-
 " edit text
 " These create newlines like o and O but stay in normal mode
 nmap zj mbo<Esc>`b
@@ -93,7 +88,6 @@ map L <action>(Forward)
 " Terminal
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
-"nnoremap ,, :action TypeAndGoInvoke<CR>
 " New staff
 nnoremap ,e :action SearchEverywhere<CR>
 nnoremap ,f :action FindInPath<CR>
@@ -101,31 +95,20 @@ nnoremap ,s :action FileStructurePopup<CR>
 nnoremap ,/ :action Find<cr>
 nnoremap ,a :action GotoAction<CR>
 vnoremap ,a :action GotoAction<CR>
-"nnoremap gp :action JumpToLastChange<CR>
+nnoremap ,p :action JumpToLastChange<CR>
 
 "nnoremap U :action FindUsages<CR>
 "nnoremap R :action RenameElement<CR>
 
-nnoremap == :action ReformatCode<CR>
-vnoremap == :action ReformatCode<CR>
-
-"nnoremap <C-CR> :action ShowIntentionActions<CR>
-"nnoremap <C-CR> :action EditorPopupMenu<CR>
-
-"nnoremap ,, :action LocalHistory.ShowHistory<CR>
+nnoremap ,hh :action LocalHistory.ShowHistory<CR>
+nnoremap <leader>hh :action LocalHistory.ShowHistory<CR>
 
 " Multiple cursors
 nmap <a-[> :action EditorCloneCaretAbove<CR>
 nmap <a-]> :action EditorCloneCaretBelow<CR>
 
-" Search
-nmap <leader>fip :action FindInPath<CR>
-
 "" find in files
 nmap <leader>fu :action FindUsages<CR>
-nmap <leader>fa :action GotoAction<CR>
-nmap <leader>fc :action GotoClass<CR>
-nmap <leader>ff :action GotoFile<cr>
 nmap <leader>url :action GotoUrlAction<cr>
 
 nmap gd :action GotoDeclaration<CR>
@@ -157,7 +140,6 @@ nmap <C-S-,> :action VcsShowNextChangeMarker<cr>
 nmap <C-S-.> :action VcsShowPrevChangeMarker<cr>
 
 "Popups
-nmap <leader>fsp :action FileStructurePopup<CR>
 nmap <leader>fp :action ShowFilePath<CR>
 nmap ,fp :action ShowFilePath<CR>
 nmap <leader>uml :action ShowUmlDiagramPopup<CR>
@@ -215,7 +197,6 @@ nmap <leader>th :action TypeHierarchy<CR>
 nmap <leader>mh :action MethodHierarchy<CR>
 nmap <leader>sb :action SliceBackward<CR>
 nmap <leader>sf :action SliceForward<CR>
-nmap <leader>qd :action QuickJavaDoc<CR>
 nmap <leader>S :action SelectInProjectView<CR>
 nmap <leader>h :action HideAllWindows<CR>
 nmap <leader>ann :action Annotate<CR>
@@ -227,9 +208,13 @@ map e ]w
 map b [b
 
 " Projects
-nmap <leader>np :action NextProjectWindow<CR>
-nmap <leader>pp :action PreviousProjectWindow<CR>
+nmap <c-a-]> :action NextProjectWindow<CR>
+nmap <c-a-[> :action PreviousProjectWindow<CR>
 nmap <leader>pw :action OpenProjectWindows<CR>
+nmap <leader>cp :action CloseProject<CR>
+nmap <leader>pc :action CloseProject<CR>
+nmap <leader>po :action $LRU<CR>
+nmap <leader>op :action $LRU<CR>
 
 " tools
 nnoremap <a--> :action ActivateTerminalToolWindow<CR>
@@ -246,9 +231,6 @@ nmap <leader>rf :action RefactoringMenu<CR>
 nmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 vmap <leader>sd :action SequencePlugin.ShowSequenceDiagram<CR>
 
-"" Inspection
-nmap <leader>inspect :action InspectCode<cr>
-
 " key bindings for quickly moving between windows
 " h left, l right, k up, j down
 nmap <leader>wh <c-w>h
@@ -256,13 +238,14 @@ nmap <leader>wl <c-w>l
 nmap <leader>wk <c-w>k
 nmap <leader>wj <c-w>j
 
-"
+
 "" To navigate between split panes
 nmap <leader>wn :action NextSplitter<cr>
 nmap <leader>wp :action PrevSplitter<cr>
 " nmap <leader>j :action PrevSplitter<cr>
 "" Splits manipulation
 nmap <leader>ws :action SplitHorizontally<cr>
+nmap <leader>wh :action SplitHorizontally<cr>
 nmap <leader>wv :action SplitVertically<cr>
 nmap <leader>us :action Unsplit<cr>
 nmap <leader>wdo :action UnsplitAll<cr>
@@ -272,30 +255,34 @@ nmap <leader>woo :action OpenEditorInOppositeTabGroup<cr>
 
 
 " easy window navigation
-nmap <c-h> :action TabShiftActions.StretchLeft<CR>
-nmap <c-l> :action TabShiftActions.StretchRight<CR>
-nmap <c-j> :action TabShiftActions.StretchDown<CR>
-nmap <c-k> :action TabShiftActions.StretchUp<CR>
+nmap <c-[> :action TabShiftActions.StretchLeft<CR>
+nmap <c-]> :action TabShiftActions.StretchRight<CR>
+nmap <c-s-[> :action TabShiftActions.StretchDown<CR>
+nmap <c-s-]> :action TabShiftActions.StretchUp<CR>
+nmap <c-s-enter> :action actions.GoldenRatioApplyAction<CR>
 
-nmap <a-l> <c-w>l
-nmap <a-h> <c-w>h
+nmap <a-s-l> <c-w>l
+nmap <a-s-h> <c-w>h
+nmap <a-s-j> <c-w>j
+nmap <a-s-k> <c-w>k
+
 nmap <a-o> :action MoveEditorToOppositeTabGroup<cr>
 nmap <a-s-O> :action OpenEditorInOppositeTabGroup<cr>
 
 " scrolling
-nmap <a-s-j> :action EditorScrollUp<cr>
-nmap <a-s-k>  :action EditorScrollDown<cr>
-nmap <a-s-h>  :action EditorScrollLeft<cr>
-nmap <a-s-l>  :action EditorScrollRight<cr>
-nmap <a-s-m>  :action EditorScrollToCenter<cr>
-vmap <a-s-j>  :action EditorScrollUp<cr>
-vmap <a-s-k>  :action EditorScrollDown<cr>
-vmap <a-s-h>  :action EditorScrollLeft<cr>
-vmap <a-s-l>  :action EditorScrollRight<cr>
-vmap <a-s-m>  :action EditorScrollToCenter<cr>
+nmap <c-j>  :action EditorScrollUp<cr>
+nmap <c-k>  :action EditorScrollDown<cr>
+nmap <c-h>  :action EditorScrollLeft<cr>
+nmap <c-l>  :action EditorScrollRight<cr>
+nmap <c-m>  :action EditorScrollToCenter<cr>
+vmap <c-j>  :action EditorScrollUp<cr>
+vmap <c-k>  :action EditorScrollDown<cr>
+vmap <c-h>  :action EditorScrollLeft<cr>
+vmap <c-l>  :action EditorScrollRight<cr>
+vmap <c-m>  :action EditorScrollToCenter<cr>
 "EditorScrollTop
 "EditorScrollBottom
-nnoremap <C-]> :action SelectNextOccurrence<cr>
+nnoremap <a-s-n> :action SelectNextOccurrence<cr>
 
 nmap // :action Find<cr>
 vmap // :action Find<cr>
