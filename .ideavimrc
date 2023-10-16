@@ -168,7 +168,7 @@ nmap <leader>ha :action HideAllWindows<CR>
 nmap <leader>hw :action HideAllWindows<CR>
 nmap <leader>wh :action HideAllWindows<CR>
 
-nmap <leader>goto :action GoToCodeGroup<cr>
+nmap <leader>go :action GoToCodeGroup<cr>
 nmap <leader>ga :action GotoAction<CR>
 nmap <leader>gc :action GotoClass<CR>
 nmap gm :action GoToMenu<CR>
@@ -179,8 +179,12 @@ nmap gurl :action GotoUrlAction<CR>
 nmap vvmm :action CodeGlance.toggle<CR>
 nmap vvii :action EditorToggleShowGutterIcons<CR>
 nmap vvln :action EditorToggleShowLineNumbers<CR>
+nmap vvll :action EditorToggleShowLineNumbers<CR>
 nmap vvpp :action ShowProcessWindow<CR>
 nmap vvpw :action ShowProcessWindow<CR>
+nmap vvnbh :action NavBarLocationHide<CR>
+nmap vvnbt :action NavBarLocationTop<CR>
+nmap vvnbb :action NavBarLocationBottom<CR>
 nmap vvbp :action ShowProcessWindow<CR>
 nmap vvcc :action EditorPopupMenu<CR>
 nmap vvcb :action EditorPopupMenu<CR>
@@ -228,16 +232,10 @@ nmap <leader>pp :action PreviousProjectWindow<CR>
 nmap <leader>pw :action OpenProjectWindows<CR>
 
 " tools
-nmap <leader>atw :action ActivateTerminalToolWindow<CR>
-nmap <leader>cmd :action ActivateTerminalToolWindow<CR>
-nnoremap <a-0> :action ActivateTerminalToolWindow<CR>
+nnoremap <a--> :action ActivateTerminalToolWindow<CR>
 
 " Refactorings
 nmap <leader>rr :action RenameElement<CR>
-nmap <leader>r= :action ReformatCode<CR>
-vmap <leader>r= :action ReformatCode<CR>
-nmap <leader>cc :action CommentByLineComment<CR>
-vmap <leader>cc :action CommentByLineComment<CR>
 nmap <leader>cg :action Generate<cr>
 vmap R :action Refactorings.QuickListPopupAction<cr>
 nmap R :action Refactorings.QuickListPopupAction<cr>
@@ -257,6 +255,7 @@ nmap <leader>wh <c-w>h
 nmap <leader>wl <c-w>l
 nmap <leader>wk <c-w>k
 nmap <leader>wj <c-w>j
+
 "
 "" To navigate between split panes
 nmap <leader>wn :action NextSplitter<cr>
@@ -272,31 +271,28 @@ nmap <leader>wmo :action MoveEditorToOppositeTabGroup<cr>
 nmap <leader>woo :action OpenEditorInOppositeTabGroup<cr>
 
 
-"javadoc"
-nmap <leader>jdoc :action com.github.setial.intellijjavadocs.action.JavaDocGenerateActionOnEditor<cr>
-
 " easy window navigation
-nmap <a-s-h> :action TabShiftActions.StretchLeft<CR>
-nmap <a-s-l> :action TabShiftActions.StretchRightCR>
-nmap <a-s-j> :action TabShiftActions.StretchDown<CR>
-nmap <a-s-k> :action TabShiftActions.StretchUp<CR>
+nmap <c-h> :action TabShiftActions.StretchLeft<CR>
+nmap <c-l> :action TabShiftActions.StretchRight<CR>
+nmap <c-j> :action TabShiftActions.StretchDown<CR>
+nmap <c-k> :action TabShiftActions.StretchUp<CR>
 
-nmap <c-l> <c-w>l
 nmap <a-l> <c-w>l
 nmap <a-h> <c-w>h
 nmap <a-o> :action MoveEditorToOppositeTabGroup<cr>
 nmap <a-s-O> :action OpenEditorInOppositeTabGroup<cr>
+
 " scrolling
-nmap <c-s-j> :action EditorScrollUp<cr>
-nmap <c-s-k>  :action EditorScrollDown<cr>
-nmap <c-s-h>  :action EditorScrollLeft<cr>
-nmap <c-s-l>  :action EditorScrollRight<cr>
-nmap <c-s-m>  :action EditorScrollToCenter<cr>
-vmap <c-s-j>  :action EditorScrollUp<cr>
-vmap <c-s-k>  :action EditorScrollDown<cr>
-vmap <c-s-h>  :action EditorScrollLeft<cr>
-vmap <c-s-l>  :action EditorScrollRight<cr>
-vmap <c-s-m>  :action EditorScrollToCenter<cr>
+nmap <a-s-j> :action EditorScrollUp<cr>
+nmap <a-s-k>  :action EditorScrollDown<cr>
+nmap <a-s-h>  :action EditorScrollLeft<cr>
+nmap <a-s-l>  :action EditorScrollRight<cr>
+nmap <a-s-m>  :action EditorScrollToCenter<cr>
+vmap <a-s-j>  :action EditorScrollUp<cr>
+vmap <a-s-k>  :action EditorScrollDown<cr>
+vmap <a-s-h>  :action EditorScrollLeft<cr>
+vmap <a-s-l>  :action EditorScrollRight<cr>
+vmap <a-s-m>  :action EditorScrollToCenter<cr>
 "EditorScrollTop
 "EditorScrollBottom
 nnoremap <C-]> :action SelectNextOccurrence<cr>
@@ -304,16 +300,12 @@ nnoremap <C-]> :action SelectNextOccurrence<cr>
 nmap // :action Find<cr>
 vmap // :action Find<cr>
 
-nmap <leader>fi :action Find<cr>
-vmap <leader>find :action Find<cr>
-vmap <leader>fi :action Find<cr>
-
 "" Building, Running and Debugging
 nmap <leader>ru :action Run<cr>
 " double ctrl
 "vmap <leader>ra :action RunAnything<cr>
 nmap <leader>rm :action RunMenu<cr>
-nmap <leader>run :action RerunTests<cr>
+nmap <leader>rrt :action RerunTests<cr>
 nmap <leader>ruf :action RerunFailedTests<cr>
 nmap <leader>rc :action RunConfiguration<cr>
 
@@ -329,6 +321,7 @@ nmap <leader>sout :action StepOut<cr>
 nmap <leader>sO :action StepOut<cr>
 nmap <leader>sbp :action StopBackgroundProcesses<cr>
 nmap <leader>ssi :action SmartStepInto<CR>
+
 "Evaluate expression
 nmap <leader>eval :action EvaluateExpression<CR>
 nmap <leader>ee :action EvaluateExpression<CR>
@@ -336,22 +329,11 @@ nmap <leader>exec :action EvaluateExpression<CR>
 vmap <leader>eval :action EvaluateExpression<CR>
 vmap <leader>ee :action EvaluateExpression<CR>
 vmap <leader>exec :action EvaluateExpression<CR>
-" Evaluate parameter
-nmap <leader>ep :action QuickEvaluateExpression<CR>
-vmap <leader>ep :action QuickEvaluateExpression<CR>
-nmap <leader>ti :action ExpressionTypeInfo<CR>
-vmap <leader>ti :action ExpressionTypeInfo<CR>
 
 " SQL
 nmap <leader>exec :action Console.Jdbc.Execute<CR>
 vmap <leader>exec :action Console.Jdbc.Execute<CR>
 
-
-" Breakpoints
-nmap <leader>bbv :action ViewBreakpoints<CR>
-" Stop break points
-nmap <leader>bbs :action XDebugger.MuteBreakpoints<CR>
-nmap <leader>bb :action ToggleLineBreakpoint<CR>
 
 " built-in navigation to navigated items works better
 map <C-o> <action>(Back)
@@ -362,14 +344,14 @@ nmap <c-a-i> :action ExpressionTypeInfo<CR>
 vmap <c-a-i> :action ExpressionTypeInfo<CR>
 
 " Breakpoints
-nmap [bv :action ViewBreakpoints<CR>
-nmap [bm :action XDebugger.MuteBreakpoints<CR>
-nmap [bb :action ToggleLineBreakpoint<CR>
+nmap ,bv :action ViewBreakpoints<CR>
+nmap ,bs :action XDebugger.MuteBreakpoints<CR>
+nmap ,bm :action XDebugger.MuteBreakpoints<CR>
+nmap ,bb :action ToggleLineBreakpoint<CR>
 
 " built-in navigation to navigated items works better
 "nnoremap <c-o> :action Back<cr>
 "nnoremap <c-i> :action Forward<cr>
->>>>>>> 40d827043d05a59091fe1fe5cee8bd3e386b70a9
 
 " Tool windows
 nmap <leader>afw :action ActivateFavoritesToolWindow<CR>
@@ -393,16 +375,6 @@ nmap <leader>clv :action Compare.LastVersion<cr>
 nmap <leader>reset :action RestartIde<CR>
 
 " IdeaVim uses 'a' for alt instead of Vim's 'm'
-
-" unimpaired mappings - from https://github.com/saaguero/ideavimrc/blob/master/.ideavimrc
-" nnoremap [<space> O<esc>j
-" nnoremap ]<space> o<esc>k
-" nnoremap [q :action PreviousOccurence<cr>
-" nnoremap ]q :action NextOccurence<cr>
-" nnoremap [m :action MethodUp<cr>
-" nnoremap ]m :action MethodDown<cr>
-"nnoremap [c :action VcsShowPrevChangeMarker<cr>
-"nnoremap ]c :action VcsShowNextChangeMarker<cr>
 
 " Errors
 "nmap <leader>gne :action GotoNextError<cr>
